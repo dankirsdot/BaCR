@@ -1,6 +1,8 @@
 import gym
 import time
 
+gym.logger.set_level(40)
+
 env = gym.make('CartPole-v0')
 
 print(env.action_space)

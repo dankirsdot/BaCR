@@ -2,10 +2,11 @@ import gym
 import time
 import numpy as np
 
+gym.logger.set_level(40)
+
 env = gym.make('CartPole-v0')
 
 pvariance = 0.1   # variance of initial parameters
-ppvariance = 0.02 # variance of perturbations
 nhiddens = 5      # number of hidden neurons
 
 # the number of inputs and outputs depends on the problem
