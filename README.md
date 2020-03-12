@@ -16,4 +16,6 @@ The evolutionary strategy for the neural network controller was implemented in '
 
 The program is separated in two parts: training part and the post-evaluation one. During the first part the evolutionary strategy tries to find appropriate neural network controller. During the second stage I take the best neural network among the population and render the solution for the same number of episodes to show the robustness of this controller. 
 
-I set the number of episodes equal to 10 and 200 steps in each one. Proposed method can solve the task, but not each time I run the program, because it is depends on the initial parameters (weights) of the neural networks in population. If we increase the number of episodes our controller will provide us the best results with the higher probability. 
+I set the number of episodes equal to 10 and 200 steps in each one. Proposed method can solve the task, but not each time I run the program, because it is depends on the initial parameters (weights) of the neural networks in population. If we increase the number of episodes our controller will provide us better results. 
+
+For this particular task 5 hidden neurons is enough and the increase of this parameter will not improve performance, but can slow down the search of a suitable neural network. The increase of the variance of the perturbation vector can affect the search in the same way.
