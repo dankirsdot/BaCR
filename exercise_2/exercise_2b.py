@@ -7,7 +7,7 @@ gym.logger.set_level(40)
 env = gym.make('CartPole-v0')
 
 pvariance = 0.1   # variance of initial parameters
-ppvariance = 0.02 # variance of perturbations
+ppvariance = 0.02  # variance of perturbations
 networks = 10     # number of neural networks
 nhiddens = 5      # number of hidden neurons
 
@@ -66,7 +66,6 @@ for e in range(episodes):
     W2[:, :, worst] = W2[:, :, best] + np.random.randn(noutputs, nhiddens, networks//2) * ppvariance
     b1[:, :, worst] = b1[:, :, best] + np.random.randn(nhiddens, 1, networks//2) * ppvariance
     b2[:, :, worst] = b2[:, :, best] + np.random.randn(noutputs, 1, networks//2) * ppvariance
-
 
 # Post-evaluation stage
 print('\nPost-evaluation stage\n')
