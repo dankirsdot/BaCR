@@ -35,3 +35,69 @@ You can see the perfomance across generations in the following figure:
 I was able to observe the behavior of evolved robot with the python script 'es.py' with the flag '-t'. You can see one frame of the simulation below:
 
 ![Results](./exercise_3/simulation.png)
+
+## Exercise 4
+
+To exchange the original reward function with the revised one I identified the pybullet folder that contains the files 'gym_locomotion.py' and 'robot_locomotors.py'. On my computer it has path:
+```bash
+/usr/local/lib/python3.6/dist-packages/pybullet_envs/
+```
+
+I evolved the halfcheetah and hopper robots with the original files using the seed 24. After that I overwrite original reward function files with the revised one contained in the 'evorobotpy/pybullet' and evolved robots again with the seed 23.
+
+I run the simulation of the results with the graphical rendering and I figured out that the robots evolved with the help of the original reward function were not able to move to the target. The hopper robot was only able to stand at the original point.
+
+![Results](./exercise_4/hopper_23.png)
+
+The halfcheetah tried to move, but crashed with every attempt.
+
+![Results](./exercise_4/halfcheetah_23.png)
+
+While the robots evolved with the help of the original reward function were able to move in the desired direction.
+
+![Results](./exercise_4/hopper_24.png)
+
+![Results](./exercise_4/halfcheetah_24.png)
+
+The original reward function consists of five main parts. To estimate if the robot behave in 'good' or 'bad' way we need to check: if the robot 'alive' or in other words check if the robot is high enough above the ground and did not fall, look at the robot 'progress' - check if the robot move to the target or in opposite direction, estimate the 'electricity_cost' or the cost of the motor using, find if the joints of the robot stuck somewhere using the 'joints_at_limit_cost' term and make sure that the robot avoid collisions with the help of the 'feet_collision_cost'. The total reward function was calculated as the sum of that parts.
+
+The revised reward function was changed for each robot in its own way. The main point here that it became simpler than the original one.
+For example for the hopper robot instead of calculating the reward function as the sum of all five criterias we estimate only the 'progress' of that robot and do not count other terms.
+For the halfcheetah robot the alive bonus was changed a bit - the robot got new termination condition which checks the height of the robot with respect to the ground (z < 0.3). So, if the robot is lower than the threshold level we should not continue this particular experiment and we definetly should not encourage such behaviour. And again the total reward function was simplified - for now we calculate it as the sum of the 'progress' and 'joints_at_limit_cost' terms.
+
+Thus, I can say that the modified reward functions in the provided files are better for the evoloutionary stratigies because they simpler. They only encourage our robots move ot the target and try to prevent falls and stucks (as the halfcheetah reward). They are do not care about additional stuff like electricity cost.
+
+
+
+## Exercise 5
+
+I implement the balance-bot using the instructions from the .pdf file and evolve the robot using 'es.py' script with the seeds 23 and 24. The robot has learned to steadily balance at one place.
+
+![Results](./exercise_5/balance_bot.png)
+
+
+
+## Exercise 6
+
+I compiled and installed the source code with the provided commands
+
+```bash
+python3 setupErDiscrim.py build_ext --inplace
+cp ErDiscrim*.so ../bin # or cp ErDiscrim*.dll ../bin
+```
+
+I run 12 experiments (seeds 23-34) using the LSTM architecture and 4 experiments (seeds 35-38) using the feed-forward neural network.
+
+For the LSMT architecture I got three main families:
+
+* Robot moves forward until it finds the cylinder, after that moves to that one and stops near it.
+
+![Results](./exercise_5/first.gif)
+
+* Robot moves until it finds the cylinder, after that moves and remain near that one, but does not stops completely.
+
+![Results](./exercise_5/second.gif)
+
+* Robot moves backward in very strange manner and when it collides with a cylinder, stops and turns in the direction of the last one.
+
+![Results](./exercise_6/third.gif)
