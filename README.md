@@ -53,17 +53,17 @@ I evolved the halfcheetah and hopper robots with the original files using the se
 
 I ran the simulation of the results with the graphical rendering and I figured out that the robots evolved with the help of the original reward function were not able to move to the target. The hopper robot was only able to stand at the original point.
 
-![hopper_23](./exercise_4/hopper_23.gif)
+![hopper_23](./exercise_4/hopper_24.gif)
 
 The halfcheetah tried to move but crashed with every attempt.
 
-![halfcheetah_23](./exercise_4/halfcheetah_23.gif)
+![halfcheetah_23](./exercise_4/halfcheetah_24.gif)
 
 At the same time the robots evolved with the help of the revised reward function were able to move in the desired direction.
 
-![hopper_24](./exercise_4/hopper_24.gif)
+![hopper_24](./exercise_4/hopper_23.gif)
 
-![halfcheetah_24](./exercise_4/halfcheetah_24.gif)
+![halfcheetah_24](./exercise_4/halfcheetah_23.gif)
 
 The original reward function consists of five main parts. To estimate if the robot behaves in 'good' or 'bad' way we need to: check if the robot is 'alive' or in other words check if the robot is high enough above the ground and does not fall; look at the robot 'progress' - check if the robot moves to the target or in opposite direction; estimate the 'electricity_cost', or the cost of the motor using; check if the joints of the robot stuck somewhere using the 'joints_at_limit_cost' term and, finally, make sure that the robot avoids collisions with the help of the 'feet_collision_cost'. The total reward function is calculated as the sum of those parts.
 
@@ -100,12 +100,17 @@ For the LSMT architecture I got three main families:
 
 * Robot moves forward until it finds the cylinder, after that it moves to that one and stops near it.
 
-![first](./exercise_5/first.gif)
+![first](./exercise_6/first.gif)
 
 * Robot moves until it finds the cylinder, after that it moves and remains near that one, but does not stops completely.
 
-![second](./exercise_5/second.gif)
+![second](./exercise_6/second.gif)
 
 * Robot moves backward in a very strange manner and when it collides with a cylinder, it stops and turns in the direction of the latter.
 
 ![third](./exercise_6/third.gif)
+
+The agents evolved with the help of the feed-forward neural network are able to move the cylinder but in two cases out of four they tend to stuck near the workspace border. It is worth noting that the feed-forward network trains faster. But I can conclude that LSTM architecture is more suitable for out task.
+
+![ff](./exercise_6/ff.gif)
+
